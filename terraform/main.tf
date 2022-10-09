@@ -1,6 +1,6 @@
 ##Create Vertex AI User Managed Notebook##
 
-resource "google_notebooks_instance" "user_managed_instance" {
+resource "google_notebooks_instance" "user_managed_nb" {
   project = local.generated_project_id
   name = var.user_mananged_nb_name
   location = var.cloud_zone
@@ -10,7 +10,7 @@ resource "google_notebooks_instance" "user_managed_instance" {
     image_family = "tf-ent-2-3-cu110-notebooks"
   }
   service_account = google_service_account.vai_service_account.email
-  post_startup_script = "gs://${var.vai_managed_notebook_bucket_name}${random_string.project_random_string.id}/vai_nb_strt_up.sh"
+  post_startup_script = "gs://${var.vai_managed_notebook_bucket_name}${random_string.project_random_string.id}/notebook-startup.sh"
   install_gpu_driver = false
   boot_disk_type = "PD_SSD"
   boot_disk_size_gb = 100
@@ -27,7 +27,7 @@ resource "google_notebooks_instance" "user_managed_instance" {
 
 ##Create Vertex AI Managed Notebook##
 
-resource "google_notebooks_runtime" "managed_nb_runtime" {
+resource "google_notebooks_runtime" "managed_nb" {
   project              = local.generated_project_id
   provider             = google-beta
   name                 = "${var.managed_nb_name}-${random_string.project_random_string.id}"
@@ -37,7 +37,7 @@ resource "google_notebooks_runtime" "managed_nb_runtime" {
     runtime_owner      = google_service_account.vai_service_account.email
   }
   software_config {
-    post_startup_script = "${google_storage_bucket.vai_managed_notebook_bucket_creation.url}/vai_nb_strt_up.sh"
+    post_startup_script = "${google_storage_bucket.vai_managed_notebook_bucket_creation.url}/notebook-startup.sh"
     post_startup_script_behavior = "DOWNLOAD_AND_RUN_EVERY_START"
   }
   virtual_machine {
