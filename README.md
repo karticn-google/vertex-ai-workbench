@@ -16,3 +16,6 @@ This section is TBD. Until finalized, if you execute the cleanup.sh, following f
 2. `./terraform/.terraform.lock.hcl`
 3. `./terraform/terraform.tfstate`
 4. `./terraform/terraform.tfstate.backup`
+
+> Note: The Post Start up script in this repository `scripts/notebook-startup.sh` will clone the following repository [Vertex AI MLOps by statmike](https://github.com/statmike/vertex-ai-mlops.git)
+ which will contain sample notebooks.
