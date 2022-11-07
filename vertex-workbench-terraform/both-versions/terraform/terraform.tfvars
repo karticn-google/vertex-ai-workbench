@@ -2,5 +2,5 @@
 iam_permissions = [
     "roles/aiplatform.user",
     "roles/bigquery.user",
-    "roles/storage.objectAdmin"
+    "roles/storage.admin"
     ]
