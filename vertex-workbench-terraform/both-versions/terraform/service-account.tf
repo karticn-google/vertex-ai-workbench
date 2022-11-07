@@ -13,10 +13,7 @@ resource "google_service_account" "vai_service_account" {
 ##Create Project IAM Member##
 resource "google_project_iam_member" "vai_project_iam_member" {
   project = local.generated_project_id
-  for_each = toset([
-    "roles/notebooks.admin",
-    "roles/storage.objectViewer"
-  ])
+  for_each = toset(var.iam_permissions)
   role = each.key
   member  = "serviceAccount:${google_service_account.vai_service_account.email}"
   depends_on = [

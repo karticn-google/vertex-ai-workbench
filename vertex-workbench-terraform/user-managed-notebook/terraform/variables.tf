@@ -84,3 +84,7 @@ variable "cloud_zone" {
   type = string
   default = "us-central1-a"
 }
+
+variable "iam_permissions" {
+  type = list
+}
