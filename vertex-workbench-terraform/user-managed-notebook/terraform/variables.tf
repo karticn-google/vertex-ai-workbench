@@ -45,7 +45,7 @@ variable "subnet_private_access" {
   default = true
 }
 
-variable "vai_managed_notebook_bucket_name" {
+variable "vai_bucket_name" {
   type = string
   description = "bucket name"
   default = "vertex-ai-managed-nb"
@@ -59,11 +59,6 @@ variable "bucket_uniform_level_access" {
 variable "bucket_force_destroy" {
   type = bool
   default = true
-}
-
-variable "managed_nb_name" {
-  type = string
-  default = "managed-notebook"
 }
 
 variable "service_account_name" {
