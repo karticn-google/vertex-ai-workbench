@@ -10,7 +10,7 @@ resource "google_notebooks_instance" "user_managed_nb" {
     image_family = "tf-ent-2-3-cu110-notebooks"
   }
   service_account = google_service_account.vai_service_account.email
-  post_startup_script = "gs://${var.vai_managed_notebook_bucket_name}${random_string.project_random_string.id}/notebook-startup.sh"
+  post_startup_script = "gs://${var.vai_bucket_name}${random_string.project_random_string.id}/notebook-startup.sh"
   install_gpu_driver = false
   boot_disk_type = "PD_SSD"
   boot_disk_size_gb = 100
