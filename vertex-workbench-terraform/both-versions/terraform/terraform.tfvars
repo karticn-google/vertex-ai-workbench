@@ -1,5 +1,6 @@
 ##Mention the values for variables created in variables.tf##
 iam_permissions = [
-    "roles/notebooks.admin",
-    "roles/storage.objectViewer"
+    "roles/aiplatform.user",
+    "roles/bigquery.user",
+    "roles/storage.objectAdmin"
     ]
